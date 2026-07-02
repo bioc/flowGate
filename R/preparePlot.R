@@ -17,6 +17,13 @@
 #'   filterId?
 #' @param overlayGates List of filterIds to plot on top of the current plot.
 #'
+#' @importFrom ggcyto ggcyto geom_gate scale_x_flowjo_biexp scale_y_flowjo_biexp as.ggplot
+#' @importFrom ggplot2 aes geom_density geom_hex
+#' @importFrom ggplot2 scale_x_continuous scale_y_continuous coord_cartesian
+#' @importFrom ggplot2 geom_path geom_vline geom_hline
+#' @importFrom rlang !!
+#' @importFrom rlang .data
+#'
 #' @return A ggplot object ready to pass into the shiny app.
 #' @noRd
 #'
@@ -34,6 +41,8 @@ preparePlot <- function(gs, sample, dims, subset, bins, useCoords, coords, overl
   
     gg <- biexAdjust(gg, useBiex, dims, x_max, x_wide, x_pos, x_neg, y_max, 
                      y_wide, y_pos, y_neg)
+
+    if ("ggcyto_GatingSet" %in% class(gg)){class(gg) <- class(gg)[class(gg) != "ggcyto_GatingSet"]}
     
     gg <- ggcyto::as.ggplot(gg)
     

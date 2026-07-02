@@ -27,6 +27,7 @@
 #'
 #' @importFrom tibble tribble
 #' @importFrom methods is
+#' @importFrom purrr pmap
 #'
 #' @examples
 #'
@@ -52,10 +53,11 @@
 #' bins = 512) # note that extra args for gs_gate_interactive can be supplied.
 #' }
 #' @export
+#'
 gs_apply_gating_strategy <- function(gs, gating_strategy, ...){
     if(methods::is(gs, "GatingSet")){
         purrr::pmap(gating_strategy, 
-                    flowGate::gs_gate_interactive, gs = gs, ...)
+                    gs_gate_interactive, gs = gs, ...)
     } else {
         stop("'gs' must be a GatingSet")
     }

@@ -90,14 +90,15 @@
 #'   gate's coordinates, plot bins, and any flowjo biex coefs used to calculate
 #'   those transforms.
 #'
-#' @import flowWorkspace
-#' @import ggcyto
-#' @import BiocManager
+#' @importFrom flowWorkspace gs_pop_remove flowjo_biexp
+#' @importFrom ggcyto ggcyto
+#' @importFrom BiocManager install
 #' @importFrom ggplot2 aes_ aes geom_density scale_x_continuous
 #' @importFrom ggplot2 scale_y_continuous geom_path geom_hex
 #' @importFrom ggplot2 theme element_blank coord_cartesian
 #' @importFrom rlang .data
-#' @importFrom shiny updateTabsetPanel reactive
+#' @importFrom shiny reactiveValues observeEvent reactive updateTabsetPanel
+#' @importFrom shiny renderPlot renderText stopApp runApp shinyApp
 #'
 #' @export
 gs_gate_interactive <- function(
